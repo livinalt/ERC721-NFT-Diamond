@@ -7,28 +7,24 @@ import {LibDiamond} from "../libraries/LibDiamond";
 
 contract ERC721Facet {
 
-    LibDiamond libDiamond;
-
-    event Minted(address indexed to, uint256 indexed tokenId);
-
-    function name() external view override returns (string memory) {
+    function name() external view returns (string memory) {
         LibDiamond storage ds = libDiamond.DiamondStorage();
         return ds.name;
     }
 
-    function symbol() external view override returns (string memory) {
+    function symbol() external view returns (string memory) {
         LibDiamond storage ds = libDiamond.DiamondStorage();
         return ds.symbol;
     }
 
-    function balanceOf(address owner) external view override returns (uint256) {
+    function balanceOf(address owner) external view returns (uint256) {
         require(owner != address(0), "ERC721: address zero is not a valid owner");
         
         LibDiamond storage ds = libDiamond.DiamondStorage();
         return ds.balances[owner];
     }
 
-    function ownerOf(uint256 tokenId) public view override returns (address) {
+    function ownerOf(uint256 tokenId) public view returns (address) {
         
         LibDiamond storage ds = libDiamond.DiamondStorage();
         address owner = ds.owners[tokenId];

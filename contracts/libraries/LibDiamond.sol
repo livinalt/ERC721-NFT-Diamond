@@ -55,7 +55,24 @@ library LibDiamond {
         mapping(address => uint256) balances;
         mapping(uint256 => address) owners;
         mapping(uint256 => string) tokenURIs;
+
+        // MerkleDistributionFacet Storage
+        bytes32 public merkleRoot;
+        address public owner;
+        bytes32[] public proof;
+        address public baycToken;
+        mapping(address => bool) public claimed;
+
     }
+    // ERC721 events
+    event Minted(address indexed to, uint256 indexed tokenId);
+
+    // merkle events
+    event AirdropClaimed(address indexed receiver, uint256 amount);
+    event MerkleRootUpdated(bytes32 indexed newMerkleRoot);
+    event TokensWithdrawn(address indexed owner, uint256 amount);
+
+
 
     function diamondStorage()
         internal
