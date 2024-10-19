@@ -49,19 +49,21 @@ library LibDiamond {
         address contractOwner;
 
         //ERC721 storage
-        string name;
-        string symbol;
+        string name = "My ERC721 Token";
+        string symbol = "M721";
         uint256 currentTokenId;
         mapping(address => uint256) balances;
         mapping(uint256 => address) owners;
         mapping(uint256 => string) tokenURIs;
 
         // MerkleDistributionFacet Storage
-        bytes32 public merkleRoot;
-        address public owner;
-        bytes32[] public proof;
-        address public baycToken;
-        mapping(address => bool) public claimed;
+        bytes32 merkleRoot;
+        address owner;
+        bytes32[] proof;
+        address baycToken;
+        mapping(address => bool) claimed;
+
+        
 
     }
     // ERC721 events

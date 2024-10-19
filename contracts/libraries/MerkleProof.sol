@@ -4,11 +4,13 @@
 
 pragma solidity 0.8.0;
 
-import {Hashes} from "./Hashes";
+import {Hashes} from "./Hashes.sol";
 
 library MerkleProof {
-   
-    error MerkleProofInvalidMultiproof();
+
+   error InValidFacetCutAction;
+   error MerkleProofInvalidMultiproof;
+
 
     function verify(bytes32[] memory proof, bytes32 root, bytes32 leaf) internal pure returns (bool) {
         return processProof(proof, leaf) == root;
@@ -104,7 +106,7 @@ library MerkleProof {
         uint256 leavesLen = leaves.length;
         uint256 proofFlagsLen = proofFlags.length;
 
-        // Check proof validity.
+        // Check proof validity
         if (leavesLen + proof.length != proofFlagsLen + 1) {
             revert MerkleProofInvalidMultiproof();
         }
